@@ -1,9 +1,10 @@
 import Link from "next/link"
 
+import classes from './Navbar.module.css';
 
 const Navbar = () => {
   return (
-    <header>
+    <header className={classes.header}>
       <nav>
         <ul>
           <li>
