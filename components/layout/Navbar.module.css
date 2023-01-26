@@ -3,7 +3,7 @@
   height: 5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .header ul {
@@ -19,6 +19,5 @@
 }
 
 .header a {
-  text-decoration: none;
   font-size: 1.5rem;
 }
