@@ -11,7 +11,13 @@ export default {
     {
       name: 'dualPic',
       type: 'image',
-      title: 'Dual Picture'
+      title: 'Dual Picture',
+      options: {
+        metadata: [
+          'blurhash',
+          'lqip'
+        ]
+      }
     }
   ]
 }
