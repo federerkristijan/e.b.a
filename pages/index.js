@@ -1,8 +1,6 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
 // import styles from "@/styles/Home.module.css";
-import { createClient } from "next-sanity";
 import sanityClient from "../lib/client";
 import Img from "next/image";
 import { useNextSanityImage } from "next-sanity-image";
@@ -14,7 +12,7 @@ export default function Home({ home }) {
   const imageProps = useNextSanityImage(sanityClient, home.image)
 
   return (
-    <>
+    <div>
       <Head>
         <title>Exclusive BDSM Adventures</title>
         <meta name="description" content="Exclusive BDSM Adventures" />
@@ -30,21 +28,21 @@ export default function Home({ home }) {
               style={{ width: '100%', height: 'auto' }}
               sizes="(max-width: 800px) 100vw, 800px"
               placeholder="blur"
-              blurDataURL={home.image.metadata.lqip}
+              blurDataURL={home.image.asset.metadata.lqip}
             />
           </div>
         )}
       </main>
-    </>
+    </div>
   );
 }
 
 export async function getStaticProps() {
-  const home = await sanityClient.fetch(`*[_type == "home"]`);
+  const data = await sanityClient.fetch(`*[_type == "home"]`);
 
   return {
     props: {
-      home
+      data
     }
   }
 }

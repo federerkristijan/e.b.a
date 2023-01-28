@@ -9,7 +9,7 @@ export default {
       title: 'Header'
     },
     {
-      name: 'dualPic',
+      name: 'image',
       type: 'image',
       title: 'Dual Picture',
       options: {
