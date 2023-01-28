@@ -5,6 +5,8 @@ import sanityClient from "../lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 
+import classes from "../styles/Home.module.css"
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ home }) {
@@ -25,12 +27,16 @@ export default function Home({ home }) {
       <main>
         {home &&
           home.map((item) => (
-            <div key={item._id}>
+            <div className={classes.home} key={item._id}>
               <Image
-                src={urlFor(item.image).width(379).url('https://cdn.sanity.io/images/ekdtjzbe/product/370da73b31cacf478a864bc39e659fcdd7833a17-379x290.png')}
+                src={urlFor(item.image)
+                  .width(1440)
+                  .url(
+                    "https://cdn.sanity.io/images/ekdtjzbe/product/dccd9ef661fa769f0e26904461a6cb8e9a9072c3-1440x1024.png"
+                  )}
                 alt={item.header}
-                width={379}
-                height={290}
+                width={1440}
+                height={1024}
               />
             </div>
           ))}
