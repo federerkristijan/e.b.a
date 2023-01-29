@@ -5,8 +5,6 @@ import sanityClient from "../lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 
-// import classes from "../styles/Home.module.css"
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ home }) {
@@ -23,8 +21,6 @@ export default function Home({ home }) {
         <meta name="description" content="Exclusive BDSM Adventures" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link href="own-carousel.min.css" rel="stylesheet" />
-        <script src="own-carousel.min.js" />
       </Head>
       <main>
         {home &&
