@@ -16,7 +16,9 @@ const Sessions = ({ sessions }) => {
 
   return (
     <div className={styles.sessions}>
-          <Carousel>
+          <Carousel
+            showStatus={false}
+          >
       {sessions &&
         sessions.map((item) => (
             <div key={item._id} className={styles.image}>
