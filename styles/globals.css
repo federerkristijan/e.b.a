@@ -21,10 +21,11 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+
+  background: #1F1F1F;
 }
 
 a {
-  color: inherit;
+  color: #F5F5F5;
   text-decoration: none;
 }
