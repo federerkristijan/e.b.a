@@ -12,13 +12,14 @@ const Sessions = ({ sessions }) => {
   function urlFor(source) {
     return builder.image(source);
   }
+  console.log('sessions ', sessions );
 
   return (
     <div className={styles.sessions}>
+          <Carousel>
       {sessions &&
         sessions.map((item) => (
-          <Carousel key={item._id}>
-            <div className={styles.image}>
+            <div key={item._id} className={styles.image}>
               <ul>
                 <li>
                   <Image
@@ -31,8 +32,8 @@ const Sessions = ({ sessions }) => {
                 </li>
               </ul>
             </div>
-          </Carousel>
         ))}
+          </Carousel>
     </div>
   );
 };
