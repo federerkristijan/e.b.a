@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
-// import styles from "@/styles/Home.module.css";
+import styles from "@/styles/Home.module.css";
 import sanityClient from "../lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 
-import classes from "../styles/Home.module.css"
+// import classes from "../styles/Home.module.css"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,11 +23,13 @@ export default function Home({ home }) {
         <meta name="description" content="Exclusive BDSM Adventures" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link href="own-carousel.min.css" rel="stylesheet" />
+        <script src="own-carousel.min.js" />
       </Head>
       <main>
         {home &&
           home.map((item) => (
-            <div className={classes.home} key={item._id}>
+            <div className={styles.home} key={item._id}>
               <Image
                 src={urlFor(item.image)
                   .width(1440)
@@ -37,7 +39,7 @@ export default function Home({ home }) {
                 alt={item.header}
                 width={1440}
                 height={1024}
-                className={classes.image}
+                className={styles.image}
               />
             </div>
           ))}
