@@ -46,7 +46,6 @@ const Sessions = ({ sessions }) => {
             <div key={item._id} className={styles.image}>
               <ul>
                 <li>
-                  {/* <div className={styles.card}> */}
                     <h2>{item.title}</h2>
                     <Image
                       src={urlFor(item.image).width(499).url()}
@@ -55,7 +54,6 @@ const Sessions = ({ sessions }) => {
                       height={338}
                       className={styles.image}
                     />
-                  {/* </div> */}
                 </li>
               </ul>
             </div>

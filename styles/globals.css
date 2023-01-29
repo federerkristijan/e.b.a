@@ -30,6 +30,6 @@ a {
   text-decoration: none;
 }
 
-h2 {
+h1, h2, p  {
   color: #F5F5F5;
 }
