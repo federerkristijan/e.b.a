@@ -1,3 +1,7 @@
 .sessions {
   display: flex;
 }
+
+.image {
+  border-radius: 9px;
+}

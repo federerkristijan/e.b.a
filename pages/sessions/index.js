@@ -1,9 +1,10 @@
 import Script from "next/script";
-import styles from "@/styles/Sessions.module.css"
+import styles from "@/styles/Sessions.module.css";
 import sanityClient from "../../lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 
 const Sessions = ({ sessions }) => {
   const builder = imageUrlBuilder(sanityClient);
@@ -14,19 +15,27 @@ const Sessions = ({ sessions }) => {
 
   return (
     <div className={styles.sessions}>
-      <Script src="own-carousel.min.js" />
-      <div className="own-carousel__container">
-        <div className="own-carousel__outer">
-          <div className="own-carousel">
-            <div className="own-carosuel__item">
-
+      {sessions &&
+        sessions.map((item) => (
+          <Carousel key={item._id}>
+            <div className={styles.image}>
+              <ul>
+                <li>
+                  <Image
+                    src={urlFor(item.image).width(499).url()}
+                    alt={item.header}
+                    width={499}
+                    height={338}
+                    className={styles.image}
+                  />
+                </li>
+              </ul>
             </div>
-          </div>
-        </div>
-      </div>
+          </Carousel>
+        ))}
     </div>
-  )
-}
+  );
+};
 
 export async function getStaticProps() {
   const sessions = await sanityClient.fetch(`*[_type == "sessions"]`);
