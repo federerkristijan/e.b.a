@@ -4,9 +4,9 @@ export default {
   title: 'Home',
   fields: [
     {
-      name: 'header',
+      name: 'title',
       type: 'string',
-      title: 'Header'
+      title: 'Title'
     },
     {
       name: 'image',

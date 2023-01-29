@@ -4,9 +4,9 @@ export default {
   title: 'Sessions',
   fields: [
     {
-      name: 'header',
+      name: 'title',
       type: 'string',
-      title: 'Header'
+      title: 'Title'
     },
     {
       name: 'image',
