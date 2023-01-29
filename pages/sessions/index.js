@@ -5,6 +5,8 @@ import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import Next from "../../styles/assets/arrow-right.png"
+import Prev from "../../styles/assets/left-arrow.png"
 
 const Sessions = ({ sessions }) => {
   const builder = imageUrlBuilder(sanityClient);
@@ -14,10 +16,20 @@ const Sessions = ({ sessions }) => {
   }
   console.log('sessions ', sessions );
 
+  const nextArrow = () => {(onClickHandler, hasNext, label) => hasNext && (
+    <button type="button" onClick={onClickHandler} title={label}>{Next}</button>
+  )};
+
+  const prevArrow = () => {(onClickHandler, hasPrev, label) => hasPrev && (
+    <button type="button" onClick={onClickHandler} title={label}>{Prev}</button>
+  )};
+
   return (
     <div className={styles.sessions}>
           <Carousel
             showStatus={false}
+            renderArrowNext={nextArrow}
+            renderArrowPrev={prevArrow}
           >
       {sessions &&
         sessions.map((item) => (
