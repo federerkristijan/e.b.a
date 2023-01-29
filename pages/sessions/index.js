@@ -1,4 +1,4 @@
-import Script from "next/script";
+import { useRouter } from "next/router";
 import styles from "@/styles/Sessions.module.css";
 import sanityClient from "../../lib/client";
 import imageUrlBuilder from "@sanity/image-url";
@@ -7,8 +7,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Next from "../../styles/assets/arrow-right.png";
 import Prev from "../../styles/assets/left-arrow.png";
+import Link from "next/link";
 
 const Sessions = ({ sessions }) => {
+  const router = useRouter();
+  const { pid } = router.query;
   const builder = imageUrlBuilder(sanityClient);
 
   function urlFor(source) {
@@ -42,18 +45,20 @@ const Sessions = ({ sessions }) => {
         // renderArrowPrev={prevArrow}
       >
         {sessions &&
-          sessions.map((item) => (
-            <div key={item._id} className={styles.image}>
+          sessions.map((session) => (
+            <div key={session._id} className={styles.image}>
               <ul>
                 <li>
-                    <h2>{item.title}</h2>
+                  <Link href="/">
+                    <h2>{session.title}</h2>
                     <Image
-                      src={urlFor(item.image).width(499).url()}
-                      alt={item.header}
+                      src={urlFor(session.image).width(499).url()}
+                      alt={session.header}
                       width={499}
                       height={338}
                       className={styles.image}
                     />
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -62,6 +67,8 @@ const Sessions = ({ sessions }) => {
     </div>
   );
 };
+
+export const getStaticPaths = async () => {}
 
 export async function getStaticProps() {
   const sessions = await sanityClient.fetch(`*[_type == "sessions"]`);
