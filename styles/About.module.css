@@ -1,0 +1,9 @@
+.about {
+  display: flex;
+}
+
+.photo {
+    padding: 1.5rem;
+    border-radius: 9px;
+    background-color: black;
+}
