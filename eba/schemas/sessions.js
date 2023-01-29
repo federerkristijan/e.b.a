@@ -4,16 +4,14 @@ export default {
   title: 'Sessions',
   fields: [
     {
-      name: 'images',
-      type: 'array',
-      title: 'Images',
-      of: [
-        {
-          name: 'image',
-          type: 'image',
-          title: 'Image'
-        }
-      ]
+      name: 'title',
+      type: 'string',
+      title: 'Title'
+    },
+    {
+      name: 'image',
+      type: 'image',
+      title: 'Image'
     }
   ]
 }
