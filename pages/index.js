@@ -37,6 +37,7 @@ export default function Home({ home }) {
                 alt={item.header}
                 width={1440}
                 height={1024}
+                className={classes.image}
               />
             </div>
           ))}
