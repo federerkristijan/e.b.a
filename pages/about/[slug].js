@@ -1,6 +1,8 @@
 import sanityClient from "../../lib/client";
 
-const AboutMe = () => {
+const recipeQuery = ``;
+
+const AboutMe = ({ about }) => {
   return (
     <div>
       <p>hello honey</p>
@@ -9,13 +11,13 @@ const AboutMe = () => {
 }
 
 export async function getStaticPaths() {
-  const dominatrix = await sanityClient.fetch(`*[_type == "about"]{
+  const about = await sanityClient.fetch(`*[_type == "about"]{
     _id,
     name
   }`);
 
-  const paths = dominatrix.map((dominatrix) => ({
-    params: { id: dominatrix._id.toString() }
+  const paths = about.map((dominatrix) => ({
+    params: { id: about._id.toString() }
   }))
 
 
