@@ -1,6 +1,6 @@
 import sanityClient from "../../lib/client";
 
-const recipeQuery = ``;
+// const query = ``;
 
 const AboutMe = ({ about }) => {
   return (
@@ -10,20 +10,26 @@ const AboutMe = ({ about }) => {
   )
 }
 
+
 export async function getStaticPaths() {
   const about = await sanityClient.fetch(`*[_type == "about"]{
     _id,
     name
   }`);
 
-  const paths = about.map((dominatrix) => ({
-    params: { id: about._id.toString() }
-  }))
+  // const dominatrix = await sanityClient.find({}, { _id: 1 }).toArray();
+
+  // const paths = about.map((dominatrix) => ({
+  //   params: { id: about._id.toString() }
+  // }))
 
 
   return {
     fallback: false,
-    paths
+    paths: [
+      { params: { id: 'Katrix' }},
+      { params: { id: 'Lady Vyra' }}
+    ]
   }
 }
 
@@ -38,10 +44,16 @@ export async function getStaticProps(context) {
     url
   }`);
 
-  const data = await res.json();
-
   return {
-    props
+    props: {
+      dominatrix: {
+        id: id,
+        name: dominatrix.name || null,
+        bio: dominatrix.bio || null,
+        photo: dominatrix.photo || null,
+        url: dominatrix.url || null
+      }
+    }
   };
 }
 

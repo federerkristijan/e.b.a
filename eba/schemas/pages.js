@@ -19,6 +19,7 @@ export default {
           title: 'Dual Picture',
           options: {
             metadata: ['blurhash', 'lqip'],
+            hotstpot: true
           },
         },
       ],
