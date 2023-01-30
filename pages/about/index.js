@@ -4,8 +4,6 @@ import sanityClient from "../../lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 
 import styles from "@/styles/About.module.css";
-// import Dasa from "../../styles/assets/Dasa1.png";
-// import Vyra from "../../styles/assets/Vyra1.png";
 
 const About = ({ about }) => {
   const builder = imageUrlBuilder(sanityClient);
@@ -18,17 +16,15 @@ const About = ({ about }) => {
     <div className={styles.about}>
       {about &&
         about.map((dominatrix) => (
-          <div key={dominatrix._id}>
-            <Link href={"/about" + about.name}>
-              <Image
-                src={urlFor(dominatrix.photo).width(498).url()}
-                alt={dominatrix.name}
-                className={styles.photo}
-                width={498}
-                height={512}
-              />
-            </Link>
-          </div>
+          <Link href={"/about/" + dominatrix.name} key={dominatrix._id}>
+            <Image
+              src={urlFor(dominatrix.photo).width(498).url()}
+              alt={dominatrix.name}
+              className={styles.photo}
+              width={498}
+              height={512}
+            />
+          </Link>
         ))}
     </div>
   );
@@ -44,8 +40,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      about
-    }
+      about,
+    },
   };
 }
 
