@@ -16,15 +16,17 @@ const About = ({ about }) => {
     <div className={styles.about}>
       {about &&
         about.map((dominatrix) => (
-          <Link href={"/about/" + dominatrix.name} key={dominatrix._id}>
-            <Image
-              src={urlFor(dominatrix.photo).width(498).url()}
-              alt={dominatrix.name}
-              className={styles.photo}
-              width={498}
-              height={512}
-            />
-          </Link>
+          <div key={dominatrix._id}>
+            <Link href={"/about/" + dominatrix.name}>
+              <Image
+                src={urlFor(dominatrix.photo).width(498).url()}
+                alt={dominatrix.name}
+                className={styles.photo}
+                width={498}
+                height={512}
+              />
+            </Link>
+          </div>
         ))}
     </div>
   );
@@ -40,7 +42,12 @@ export async function getStaticProps() {
 
   return {
     props: {
-      about,
+      about: {
+        name: about.name || null,
+        bio: about.bio || null,
+        pühoto: about.photo || null,
+        url: about.url || null
+      }
     },
   };
 }
