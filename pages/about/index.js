@@ -12,8 +12,6 @@ const About = ({ about }) => {
     return builder.image(source);
   }
 
-  console.log(about);
-
   return (
     <div className={styles.about}>
       {about &&

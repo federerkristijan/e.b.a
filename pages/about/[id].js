@@ -3,8 +3,6 @@ import Link from "next/link";
 import sanityClient from "../../lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 
-// const query = ``;
-
 const AboutMe = ({ about }) => {
   const builder = imageUrlBuilder(sanityClient);
 
@@ -27,7 +25,9 @@ const AboutMe = ({ about }) => {
               width={498}
               height={512}
             />
-            <Link href={item.url}><p>{item.url}</p></Link>
+            <Link href={item.url}>
+              <p>{item.url}</p>
+            </Link>
           </div>
         ))}
     </div>
@@ -35,9 +35,10 @@ const AboutMe = ({ about }) => {
 };
 
 export async function getStaticPaths() {
-  const about = await sanityClient.fetch(`*[_type == "about"]{
-    _id,
-    name
+  const paths = await sanityClient.fetch(`*[_type == "about"]{
+    "params": {
+      "id":_id,
+    }
   }`);
 
   // const dominatrix = await sanityClient.find({}, { _id: 1 }).toArray();
@@ -47,8 +48,8 @@ export async function getStaticPaths() {
   // }))
 
   return {
-    fallback: false,
-    paths: [{ params: { id: "Katrix" } }, { params: { id: "Lady Vyra" } }],
+    fallback: true,
+    paths,
   };
 }
 
@@ -67,10 +68,6 @@ export async function getStaticProps(context) {
     props: {
       dominatrix: {
         id: id,
-        name: dominatrix.name || null,
-        bio: dominatrix.bio || null,
-        photo: dominatrix.photo || null,
-        url: dominatrix.url || null,
       },
     },
   };
