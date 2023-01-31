@@ -12,6 +12,8 @@ const About = ({ about }) => {
     return builder.image(source);
   }
 
+  console.log(about);
+
   return (
     <div className={styles.about}>
       {about &&
@@ -42,14 +44,9 @@ export async function getStaticProps() {
 
   return {
     props: {
-      about: {
-        name: about.name || null,
-        bio: about.bio || null,
-        pühoto: about.photo || null,
-        url: about.url || null
-      }
-    },
-  };
+      about
+    }
+  }
 }
 
 export default About;
