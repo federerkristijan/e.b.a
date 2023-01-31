@@ -5,18 +5,18 @@ export default {
   of: [
     {
       name: 'home',
-      type: 'document',
       title: 'Home',
+      type: 'document',
       fields: [
         {
           name: 'header',
-          type: 'string',
           title: 'Header',
+          type: 'string',
         },
         {
           name: 'image',
-          type: 'image',
           title: 'Dual Picture',
+          type: 'image',
           options: {
             metadata: ['blurhash', 'lqip'],
             hotstpot: true

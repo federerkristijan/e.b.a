@@ -35,7 +35,7 @@ const AboutMe = ({ about }) => {
 };
 
 export async function getStaticPaths() {
-  const paths = await sanityClient.fetch(`*[_type == "about"]{
+  const paths = await sanityClient.fetch(`*[_type == "about" && defined(_id)]{
     "params": {
       "id":_id,
     }
@@ -48,7 +48,7 @@ export async function getStaticPaths() {
   // }))
 
   return {
-    fallback: true,
+    fallback: false,
     paths,
   };
 }

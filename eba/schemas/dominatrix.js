@@ -1,30 +1,35 @@
 export default{
   name: 'dominatrix',
-  type: 'slug',
   title: 'Dominatrix',
+  type: 'document',
   fields: [
       {
         name: 'name',
+        title: 'Name',
         type: 'string',
-        title: 'Name'
       },
       {
         name: 'bio',
+        title: 'Bio',
         type: 'text',
-        title: 'Bio'
       },
       {
         name: 'photo',
-        type: 'image',
         title: 'Photo',
+        type: 'image',
         options: {
           metadata: ['blurhash', 'lqip'],
         },
       },
       {
         name: 'url',
+        title: 'URLs',
         type: 'url',
-        title: 'URLs'
+      },
+      {
+        name: 'slug',
+        title: 'Slug',
+        type: 'slug',
       }
   ]
 }

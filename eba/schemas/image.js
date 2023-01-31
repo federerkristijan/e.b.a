@@ -1,14 +1,13 @@
-
 export default {
   name: 'image',
-  type: 'image',
   title: 'Image',
+  type: 'image',
   hotspot: true,
   fields: [
     {
       name: 'alt',
+      title: 'Title',
       type: 'string',
-      title: 'Title'
     }
   ]
 }
