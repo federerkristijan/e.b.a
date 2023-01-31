@@ -9,23 +9,12 @@ export default {
       type: 'string',
     },
     {
-      name: 'bio',
-      title: 'Bio',
-      type: 'text',
-    },
-    {
       name: 'photo',
       title: 'Photo',
       type: 'image',
       options: {
         metadata: ['blurhash', 'lqip'],
       },
-    },
-    {
-      name: 'url',
-      title: 'URLs',
-      type: 'url'
-    },
-
+    }
   ]
 }

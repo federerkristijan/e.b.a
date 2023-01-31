@@ -9,6 +9,15 @@ export default{
         type: 'string',
       },
       {
+        name: 'slug',
+        title: 'Slug',
+        type: 'slug',
+        options: {
+          source: 'title'
+        },
+        description: 'Generate me'
+      },
+      {
         name: 'bio',
         title: 'Bio',
         type: 'text',
@@ -26,10 +35,5 @@ export default{
         title: 'URLs',
         type: 'url',
       },
-      {
-        name: 'slug',
-        title: 'Slug',
-        type: 'slug',
-      }
   ]
 }
