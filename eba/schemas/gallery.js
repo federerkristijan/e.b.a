@@ -1,25 +1,25 @@
 export default {
   name: 'gallery',
-  type: 'object',
   title: 'Gallery',
+  type: 'object',
   fields: [
     {
       name: 'images',
-      type: 'array',
       title: 'Images',
+      type: 'array',
       of: [
         {
           name: 'image',
-          type: 'image',
           titel: 'Image',
+          type: 'image',
           options: {
             hotspot: true,
           },
           fields: [
             {
               name: 'alt',
-              type: 'string',
               title: 'Alternative text',
+              type: 'string',
             },
           ],
         },
@@ -30,8 +30,8 @@ export default {
     },
     {
       name: 'display',
-      type: 'string',
       title: 'Display as',
+      type: 'string',
       description: 'How should we display these images?',
       options: {
         list: [
@@ -44,8 +44,8 @@ export default {
     },
     {
       name: 'zoom',
-      type: 'boolean',
       title: 'Zoom enabled',
+      type: 'boolean',
       description: 'Should we enable zooming of images?'
     },
   ],

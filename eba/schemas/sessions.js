@@ -1,17 +1,17 @@
 export default {
   name: 'sessions',
-  type: 'document',
   title: 'Sessions',
+  type: 'document',
   fields: [
     {
       name: 'title',
+      title: 'Title',
       type: 'string',
-      title: 'Title'
     },
     {
       name: 'image',
+      title: 'Image',
       type: 'image',
-      title: 'Image'
     }
   ]
 }

@@ -1,17 +1,17 @@
 export default {
   name: 'home',
-  type: 'document',
   title: 'Home',
+  type: 'document',
   fields: [
     {
       name: 'title',
+      title: 'Title',
       type: 'string',
-      title: 'Title'
     },
     {
       name: 'image',
-      type: 'image',
       title: 'Dual Picture',
+      type: 'image',
       options: {
         metadata: [
           'blurhash',

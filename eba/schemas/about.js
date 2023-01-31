@@ -1,30 +1,29 @@
 export default {
   name: 'about',
-  type: 'document',
   title: 'About',
+  type: 'document',
   fields: [
     {
       name: 'name',
+      title: 'Name',
       type: 'string',
-      title: 'Name'
-    },
-    {
-      name: 'bio',
-      type: 'text',
-      title: 'Bio'
     },
     {
       name: 'photo',
-      type: 'image',
       title: 'Photo',
+      type: 'image',
       options: {
         metadata: ['blurhash', 'lqip'],
       },
     },
     {
-      name: 'url',
-      type: 'url',
-      title: 'URLs'
-    }
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title'
+      },
+      description: 'Generate me'
+    },
   ]
 }

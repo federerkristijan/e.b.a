@@ -5,6 +5,13 @@ import imageUrlBuilder from "@sanity/image-url";
 
 import styles from "@/styles/About.module.css";
 
+const aboutQuery = `*[_type == "about"]{
+  _id,
+  name,
+  phot,
+  slug
+}`
+
 const About = ({ about }) => {
   const builder = imageUrlBuilder(sanityClient);
 
@@ -16,8 +23,8 @@ const About = ({ about }) => {
     <div className={styles.about}>
       {about &&
         about.map((dominatrix) => (
-          <div key={dominatrix._id}>
-            <Link href={"/about/" + dominatrix.name}>
+          <div key={dominatrix._id} className={styles.about_card}>
+            <Link href={`/about/${dominatrix.slug.current}`}>
               <Image
                 src={urlFor(dominatrix.photo).width(498).url()}
                 alt={dominatrix.name}
@@ -33,23 +40,13 @@ const About = ({ about }) => {
 };
 
 export async function getStaticProps() {
-  const about = await sanityClient.fetch(`*[_type == "about"]{
-    name,
-    bio,
-    photo,
-    url
-  }`);
+  const about = await sanityClient.fetch(aboutQuery);
 
   return {
     props: {
-      about: {
-        name: about.name || null,
-        bio: about.bio || null,
-        pühoto: about.photo || null,
-        url: about.url || null
-      }
-    },
-  };
+      about
+    }
+  }
 }
 
 export default About;
