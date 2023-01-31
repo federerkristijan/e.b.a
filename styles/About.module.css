@@ -5,6 +5,10 @@
   gap: 3.5rem;
 }
 
+.about_card {
+  padding: 1rem;
+}
+
 .photo {
     padding: 1.5rem;
     border-radius: 9px;

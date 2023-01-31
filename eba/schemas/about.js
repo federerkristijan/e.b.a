@@ -15,6 +15,15 @@ export default {
       options: {
         metadata: ['blurhash', 'lqip'],
       },
-    }
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title'
+      },
+      description: 'Generate me'
+    },
   ]
 }

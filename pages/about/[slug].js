@@ -3,7 +3,16 @@ import Link from "next/link";
 import sanityClient from "../../lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 
-const AboutMe = ({ about }) => {
+const query = `*[_type == "dominatrix" && slug.current == $slug][0]{
+  _id,
+  name,
+  slug,
+  bio,
+  photo,
+  url
+}`;
+
+const AboutMe = ({ dominatrix }) => {
   const builder = imageUrlBuilder(sanityClient);
 
   function urlFor(source) {
@@ -13,8 +22,14 @@ const AboutMe = ({ about }) => {
   return (
     <div>
       <p>hello</p>
-      {about &&
-        about.map((item) => (
+      <main>
+        <h1>{dominatrix.name}</h1>
+        <Image src={urlFor(dominatrix?.photo).url()} alt={dominatrix.name} width={350} height={300}/>
+        <h2>{dominatrix.bio}</h2>
+        <Link href={dominatrix.url}>{dominatrix.url}</Link>
+      </main>
+      {/* {dominatrix &&
+        dominatrix.map((item) => (
           <div key={item.name}>
             <h2>{item.name}</h2>
             <h4>{item.bio}</h4>
@@ -29,23 +44,19 @@ const AboutMe = ({ about }) => {
               <p>{item.url}</p>
             </Link>
           </div>
-        ))}
+        ))} */}
     </div>
   );
 };
 
 export async function getStaticPaths() {
-  const paths = await sanityClient.fetch(`*[_type == "about" && defined(_id)]{
-    "params": {
-      "id":_id,
+  const paths =
+    await sanityClient.fetch(
+      `*[_type == "dominatrix" && defined(slug.current)]{
+        "params": {
+          "slug": slug.current,
     }
   }`);
-
-  // const dominatrix = await sanityClient.find({}, { _id: 1 }).toArray();
-
-  // const paths = about.map((dominatrix) => ({
-  //   params: { id: about._id.toString() }
-  // }))
 
   return {
     fallback: false,
@@ -53,22 +64,14 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(context) {
-  const id = context.params.id;
+export async function getStaticProps({ params }) {
+  const { slug } = params;
 
-  const dominatrix = await sanityClient.fetch(`*[_type == "about"]{
-    _id,
-    name,
-    bio,
-    photo,
-    url
-  }`);
+  const dominatrix = await sanityClient.fetch(query, { slug });
 
   return {
     props: {
-      dominatrix: {
-        id: id,
-      },
+      data: { dominatrix },
     },
   };
 }
