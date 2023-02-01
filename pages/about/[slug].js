@@ -20,9 +20,9 @@ const AboutMe = ({ dominatrix }) => {
     return builder.image(source);
   }
 
+  //  need: rendering just one object of the array, not the both
   return (
     <div>
-      <p>hello</p>
       <main>
         {dominatrix &&
           dominatrix.map((item) => (
@@ -32,7 +32,6 @@ const AboutMe = ({ dominatrix }) => {
               <Image
                 src={urlFor(item.photo).url()}
                 alt={item.name}
-                className={styles.photo}
                 width={498}
                 height={512}
               />
