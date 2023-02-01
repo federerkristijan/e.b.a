@@ -21,7 +21,7 @@ export default {
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title'
+        source: 'name'
       },
       description: 'Generate me'
     },

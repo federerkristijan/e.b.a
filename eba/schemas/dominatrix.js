@@ -13,7 +13,7 @@ export default{
         title: 'Slug',
         type: 'slug',
         options: {
-          source: 'title'
+          source: 'name'
         },
         description: 'Generate me'
       },
@@ -32,7 +32,7 @@ export default{
       },
       {
         name: 'url',
-        title: 'URLs',
+        title: 'Link',
         type: 'url',
       },
   ]
