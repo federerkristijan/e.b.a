@@ -68,7 +68,7 @@ const Sessions = ({ sessions }) => {
   );
 };
 
-export const getStaticPaths = async () => {}
+// export const getStaticPaths = async () => {};
 
 export async function getStaticProps() {
   const sessions = await sanityClient.fetch(`*[_type == "sessions"]`);

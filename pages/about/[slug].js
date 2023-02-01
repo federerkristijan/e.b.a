@@ -23,12 +23,11 @@ const AboutMe = ({ dominatrix }) => {
     <div>
       <p>hello</p>
       <main>
-        <h1>{dominatrix.name}</h1>
+        {/* <h1>{dominatrix.name}</h1>
         <Image src={urlFor(dominatrix?.photo).url()} alt={dominatrix.name} width={350} height={300}/>
-        <h2>{dominatrix.bio}</h2>
-        <Link href={dominatrix.url}>{dominatrix.url}</Link>
-      </main>
-      {/* {dominatrix &&
+        <h2>{dominatrix.bio}</h2> */}
+        {/* <Link href={dominatrix.url}>{dominatrix.url}</Link> */}
+      {dominatrix &&
         dominatrix.map((item) => (
           <div key={item.name}>
             <h2>{item.name}</h2>
@@ -44,7 +43,8 @@ const AboutMe = ({ dominatrix }) => {
               <p>{item.url}</p>
             </Link>
           </div>
-        ))} */}
+        ))}
+      </main>
     </div>
   );
 };
