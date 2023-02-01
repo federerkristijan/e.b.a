@@ -57,11 +57,11 @@ export async function getStaticPaths() {
   // );
   const paths = await sanityClient.fetch(
     groq`*[_type == "dominatrix"&& defined(slug.current)][].slug.current`
-  )
+  );
 
   return {
     fallback: false,
-    paths: paths.map((slug) => ({params: {slug}}))
+    paths: paths.map((slug) => ({ params: { slug } })),
   };
 }
 
@@ -72,7 +72,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      data: { dominatrix },
+      dominatrix,
     },
   };
 }
