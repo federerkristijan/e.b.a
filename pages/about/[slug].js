@@ -20,9 +20,9 @@ const AboutMe = ({ dominatrix }) => {
     return builder.image(source);
   }
 
+  //  need: rendering just one object of the array, not the both
   return (
     <div>
-      <p>hello</p>
       <main>
         {dominatrix &&
           dominatrix.map((item) => (
