@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { sanityClient, urlFor } from "../../lib/client";
-// import sanityClient from "../../lib/client";
-// import imageUrlBuilder from "@sanity/image-url";
+// import { sanityClient, urlFor } from "../../lib/client";
+import sanityClient from "@/lib/client";
+// import urlFor from "@/lib/client";
+import imageUrlBuilder from "@sanity/image-url";
 
 import styles from "@/styles/About.module.css";
 
@@ -15,9 +16,15 @@ const aboutQuery = `*[_type == "about"]{
 
 const About = ({ about }) => {
 
+  const builder = imageUrlBuilder(sanityClient);
+
+  function urlFor(source) {
+    return builder.image(source);
+  }
+
   return (
     <div className={styles.about}>
-      {about.length > 0 &&
+      {about &&
         about.map((dominatrix) => (
           <div key={dominatrix._id} className={styles.about_card}>
             <Link
@@ -46,7 +53,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      about,
+      about
     },
   };
 }

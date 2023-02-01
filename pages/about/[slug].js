@@ -32,7 +32,6 @@ const AboutMe = ({ dominatrix }) => {
               <Image
                 src={urlFor(item.photo).url()}
                 alt={item.name}
-                className={styles.photo}
                 width={498}
                 height={512}
               />
