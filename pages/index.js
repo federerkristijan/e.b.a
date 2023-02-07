@@ -1,14 +1,29 @@
 import Head from "next/head";
 import Image from "next/image";
+import {lazy} from 'react'
 import { Inter } from "@next/font/google";
+import {PreviewSuspense} from 'next-sanity/preview'
 
 import { getClient, overlayDrafts } from "@/lib/sanity.server";
 import { indexQuery } from '@/lib/queries';
 import styles from "@/styles/Home.module.css";
+import { usePreview } from "@/lib/sanity";
+import PreviewDocumentsCount from "@/components/PreviewDocumentsCount";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ home }) {
+export const PreviewDocumentCount = lazy(() => import('/components/PreviewDocumentsCount'))
+
+export default function Home({ preview, data: initialData }) {
+  const data = usePreview(null, indexQuery);
+
+  if (preview) {
+    return (
+      <PreviewSuspense fallback={<DocumentsCount data={data} />} >
+         <PreviewDocumentsCount />
+      </PreviewSuspense>
+    )
+  }
 
   return (
     <div>
