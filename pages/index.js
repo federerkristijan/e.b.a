@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
-import sanityClient from "../lib/client";
+import sanityClient from "../lib/sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 // import { sanityClient, urlFor } from "../../lib/client";
-import sanityClient from "@/lib/client";
+import sanityClient from "@/lib/sanity";
 // import urlFor from "@/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 

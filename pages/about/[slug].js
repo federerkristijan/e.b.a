@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { sanityClient, urlFor } from "@/lib/client";
+import { sanityClient, urlFor } from "@/lib/sanity";
+import { getClient } from "@/lib/sanity.server";
 import { slugQuery, slugPathQuery } from "@/lib/queries";
-import imageUrlBuilder from "@sanity/image-url";
+// import imageUrlBuilder from "@sanity/image-url";
 import { useRouter } from "next/router";
+import ErrorPage from 'next/error'
 
 const AboutMe = ({ data = {}, preview }) => {
   const router = useRouter();
@@ -52,7 +54,7 @@ const AboutMe = ({ data = {}, preview }) => {
 };
 
 export async function getStaticProps({ params, preview = false }) {
-  const dominatrix = await sanityClient.fetch(slugQuery, { slug: params.slug });
+  const dominatrix = await getClient.fetch(slugQuery, { slug: params.slug });
 
   return {
     props: {
