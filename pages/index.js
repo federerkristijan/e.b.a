@@ -17,13 +17,13 @@ export const PreviewDocumentCount = lazy(() => import('/components/PreviewDocume
 export default function Home({ preview, data: initialData }) {
   const data = usePreview(null, indexQuery);
 
-  if (preview) {
-    return (
-      <PreviewSuspense fallback={<DocumentsCount data={data} />} >
-         <PreviewDocumentsCount />
-      </PreviewSuspense>
-    )
-  }
+  // if (preview) {
+  //   return (
+  //     <PreviewSuspense fallback={<DocumentsCount data={data} />} >
+  //        <PreviewDocumentsCount />
+  //     </PreviewSuspense>
+  //   )
+  // }
 
   return (
     <div>
