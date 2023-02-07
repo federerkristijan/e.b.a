@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import styles from "@/styles/Sessions.module.css";
-import sanityClient from "../../lib/client";
+import sanityClient from "../../lib/sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";

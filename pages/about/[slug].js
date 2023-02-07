@@ -1,79 +1,69 @@
 import Image from "next/image";
 import Link from "next/link";
-import sanityClient from "../../lib/client";
-import imageUrlBuilder from "@sanity/image-url";
-import { groq } from "next-sanity";
+import { sanityClient, urlFor } from "@/lib/sanity";
+import { getClient } from "@/lib/sanity.server";
+import { slugQuery, slugPathQuery } from "@/lib/queries";
+import { useRouter } from "next/router";
+import ErrorPage from 'next/error'
 
-const query = `*[_type == "dominatrix" && slug.current == $slug][0]{
-  _id,
-  name,
-  slug,
-  bio,
-  photo,
-  url
-}`;
+const AboutMe = ({ data = {}, preview }) => {
+  const router = useRouter();
 
-const AboutMe = ({ dominatrix }) => {
+  const slug = data?.dominatrix?.slug;
 
-  const builder = imageUrlBuilder(sanityClient);
+  const { data: dominatrix } = usePreviewSubscriptions(slugQuery, {
+    params: { slug },
+    initalData: data,
+    enabled: preview && slug,
+  });
 
-  function urlFor(source) {
-    return builder.image(source);
+  if (!router.isFallback && !slug) {
+    return <ErrorPage statusCode={404} />;
   }
 
   //  need: rendering just one object of the array, not the both
   return (
-    <div>
-      <main>
-        {dominatrix &&
-          dominatrix.map((item) => (
-            <div key={item._id}>
-              <h2>{item.name}</h2>
-              <h4>{item.bio}</h4>
-              <Image
-                src={urlFor(item.photo).url()}
-                alt={item.name}
-                width={498}
-                height={512}
-              />
-              <h1>test</h1>
-              <Link href={item.url}>
-                <p>{item.url}</p>
-              </Link>
-            </div>
-          ))}
-      </main>
-    </div>
+    <main preview={preview}>
+      {router.isFallback ? (
+        <div>Loading...</div>
+      ) : (
+        <div key={item._id}>
+          <h2>{item.name}</h2>
+          <h4>{item.bio}</h4>
+          <Image
+            src={urlFor(item.photo).url()}
+            alt={item.name}
+            width={498}
+            height={512}
+          />
+          <h1>test</h1>
+          <Link href={item.url}>
+            <p>{item.url}</p>
+          </Link>
+        </div>
+      )}
+    </main>
   );
 };
 
-export async function getStaticPaths() {
-  // const paths = await sanityClient.fetch(
-  //   `*[_type == "dominatrix" && defined(slug.current)][]{
-  //       "params": {
-  //         "slug": slug.current,
-  //   }
-  // }`
-  // );
-  const paths = await sanityClient.fetch(
-    groq`*[_type == "dominatrix" && defined(slug.current)][].slug.current`
-  );
-
-  return {
-    fallback: false,
-    paths: paths.map((slug) => ({ params: { slug } })),
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const { slug } = params;
-
-  const dominatrix = await sanityClient.fetch(query, { slug });
+export async function getStaticProps({ params, preview = false }) {
+  const dominatrix = await getClient.fetch(slugQuery, { slug: params.slug });
 
   return {
     props: {
-      dominatrix
+      data: {
+        dominatrix,
+      },
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(slugPathQuery);
+
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: true,
   };
 }
 
