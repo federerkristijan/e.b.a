@@ -4,6 +4,7 @@ import Link from "next/link";
 import sanityClient from "@/lib/sanity";
 // import urlFor from "@/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
+import { getClient, overlayDrafts } from "@/lib/sanity.server";
 
 import styles from "@/styles/About.module.css";
 
@@ -48,14 +49,25 @@ const About = ({ about }) => {
   );
 };
 
-export async function getStaticProps() {
-  const about = await sanityClient.fetch(aboutQuery);
+export async function getStaticProps({ preview = false }) {
+  const about = overlayDrafts(await getClient(preview).fetch(aboutQuery));
 
   return {
     props: {
-      about
+      about, preview
     },
   };
 }
+
+
+// export async function getStaticProps() {
+//   const about = await sanityClient.fetch(aboutQuery);
+
+//   return {
+//     props: {
+//       about
+//     },
+//   };
+// }
 
 export default About;

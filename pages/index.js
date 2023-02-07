@@ -4,6 +4,8 @@ import styles from "@/styles/Home.module.css";
 import sanityClient from "../lib/sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
+import { getClient, overlayDrafts } from "@/lib/sanity.server";
+import { indexQuery } from '../lib/queries';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,12 +46,12 @@ export default function Home({ home }) {
   );
 }
 
-export async function getStaticProps() {
-  const home = await sanityClient.fetch(`*[_type == "home"]`);
+export async function getStaticProps({ preview = false }) {
+  const home = overlayDrafts(await getClient(preview).fetch(indexQuery));
 
   return {
     props: {
-      home,
+      home, preview
     },
   };
 }
