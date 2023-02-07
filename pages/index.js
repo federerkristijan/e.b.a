@@ -5,7 +5,7 @@ import sanityClient from "../lib/sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import { getClient, overlayDrafts } from "@/lib/sanity.server";
-import { indexQuery } from '../lib/queries';
+import { indexQuery } from '@/lib/queries';
 
 const inter = Inter({ subsets: ["latin"] });
 

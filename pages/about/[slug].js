@@ -3,7 +3,6 @@ import Link from "next/link";
 import { sanityClient, urlFor } from "@/lib/sanity";
 import { getClient } from "@/lib/sanity.server";
 import { slugQuery, slugPathQuery } from "@/lib/queries";
-// import imageUrlBuilder from "@sanity/image-url";
 import { useRouter } from "next/router";
 import ErrorPage from 'next/error'
 
@@ -21,12 +20,6 @@ const AboutMe = ({ data = {}, preview }) => {
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />;
   }
-
-  // const builder = imageUrlBuilder(sanityClient);
-
-  // function urlFor(source) {
-  //   return builder.image(source);
-  // }
 
   //  need: rendering just one object of the array, not the both
   return (

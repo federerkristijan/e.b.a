@@ -1,27 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-// import { sanityClient, urlFor } from "../../lib/client";
-import sanityClient from "@/lib/sanity";
-// import urlFor from "@/lib/client";
-import imageUrlBuilder from "@sanity/image-url";
+import { urlFor } from "@/lib/sanity";
 import { getClient, overlayDrafts } from "@/lib/sanity.server";
+import { aboutQuery } from '@/lib/queries';
 
 import styles from "@/styles/About.module.css";
 
-const aboutQuery = `*[_type == "about"]{
-  _id,
-  name,
-  photo,
-  slug
-}`;
-
 const About = ({ about }) => {
 
-  const builder = imageUrlBuilder(sanityClient);
-
-  function urlFor(source) {
-    return builder.image(source);
-  }
 
   return (
     <div className={styles.about}>
@@ -58,16 +44,5 @@ export async function getStaticProps({ preview = false }) {
     },
   };
 }
-
-
-// export async function getStaticProps() {
-//   const about = await sanityClient.fetch(aboutQuery);
-
-//   return {
-//     props: {
-//       about
-//     },
-//   };
-// }
 
 export default About;
