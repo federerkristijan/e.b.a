@@ -4,7 +4,7 @@ import sanityClient from "../../lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { groq } from "next-sanity";
 
-const query = `*[_type == "dominatrix"]{
+const slugQuery = `*[_type == "dominatrix" && slug.current = $slug]{
   _id,
   name,
   slug,
@@ -67,7 +67,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params;
 
-  const dominatrix = await sanityClient.fetch(query, { slug });
+  const dominatrix = await sanityClient.fetch(slugQuery, { slug });
 
   return {
     props: {
