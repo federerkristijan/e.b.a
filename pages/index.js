@@ -1,20 +1,14 @@
 import Head from "next/head";
-import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
-import sanityClient from "../lib/sanity";
-import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
+import { Inter } from "@next/font/google";
+
 import { getClient, overlayDrafts } from "@/lib/sanity.server";
 import { indexQuery } from '@/lib/queries';
+import styles from "@/styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ home }) {
-  const builder = imageUrlBuilder(sanityClient);
-
-  function urlFor(source) {
-    return builder.image(source);
-  }
 
   return (
     <div>

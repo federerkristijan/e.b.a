@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { urlFor } from "@/lib/sanity";
 import { getClient, overlayDrafts } from "@/lib/sanity.server";
 import { aboutQuery } from '@/lib/queries';
-
 import styles from "@/styles/About.module.css";
 
 const About = ({ about }) => {
-
 
   return (
     <div className={styles.about}>
