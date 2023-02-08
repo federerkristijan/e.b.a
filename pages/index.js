@@ -2,8 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import {lazy} from 'react'
 import { Inter } from "@next/font/google";
-import {PreviewSuspense} from 'next-sanity/preview'
+// import {PreviewSuspense} from 'next-sanity/preview'
 
+import { urlForImage } from "@/lib/sanity";
 import { getClient, overlayDrafts } from "@/lib/sanity.server";
 import { indexQuery } from '@/lib/queries';
 import styles from "@/styles/Home.module.css";
@@ -14,8 +15,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const PreviewDocumentCount = lazy(() => import('/components/PreviewDocumentsCount'))
 
-export default function Home({ preview, data: initialData }) {
-  const data = usePreview(null, indexQuery);
+export default function Home({ home }) {
 
   // if (preview) {
   //   return (
@@ -38,7 +38,7 @@ export default function Home({ preview, data: initialData }) {
           home.map((item) => (
             <div className={styles.home} key={item._id}>
               <Image
-                src={urlFor(item.image)
+                src={urlForImage(item.image)
                   .width(1440)
                   .url(
                     "https://cdn.sanity.io/images/ekdtjzbe/product/dccd9ef661fa769f0e26904461a6cb8e9a9072c3-1440x1024.png"
