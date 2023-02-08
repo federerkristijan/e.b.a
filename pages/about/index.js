@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { urlFor } from "@/lib/sanity";
+import { urlForImage } from "@/lib/sanity";
 import { getClient, overlayDrafts } from "@/lib/sanity.server";
 import { aboutQuery } from '@/lib/queries';
 import styles from "@/styles/About.module.css";
@@ -21,7 +21,7 @@ const About = ({ about }) => {
               as={`/about/${dominatrix.slug.current}`}
             >
               <Image
-                src={urlFor(dominatrix.photo).url()}
+                src={urlForImage(dominatrix.photo).url()}
                 alt={dominatrix.name}
                 className={styles.photo}
                 width={498}
