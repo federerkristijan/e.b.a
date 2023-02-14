@@ -1,30 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
 import { sanityClient, urlFor } from "@/lib/sanity";
-import { getClient } from "@/lib/sanity.server";
+// import { getClient } from "@/lib/sanity.server";
 import { dominatrixQuery, slugPathQuery } from "@/lib/queries";
 import { useRouter } from "next/router";
-import ErrorPage from 'next/error'
+import ErrorPage from "next/error";
 
 async function getDominatrix() {
-  const res = await fetch (
-    sanityClient
-  )
+  const res = await fetch('slugPathQuery', {
+    next: { revalidate: 10 },
+  });
   const data = await res.json();
   return data;
 }
+
 
 const AboutMe = async ({ params }) => {
   const dominatrix = await getDominatrix(params.id);
   const router = useRouter();
 
-  const slug = data?.dominatrix?.slug;
+  // console.log(dominatrix)
 
-  // const { data } = usePreviewSubscriptions(dominatrixQuery, {
-  //   params: { slug },
-  //   initalData: data,
-  //   enabled: preview && slug,
-  // });
+  const slug = data?.dominatrix?.slug;
 
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />;
@@ -33,9 +30,9 @@ const AboutMe = async ({ params }) => {
   //  need: rendering just one object of the array, not the both
   return (
     <main preview={preview}>
-      {/* {router.isFallback ? (
+      {router.isFallback ? (
         <div>Loading...</div>
-      ) : ( */}
+      ) : (
         <div key={dominatrix._id}>
           <h2>{dominatrix.name}</h2>
           <h4>{dominatrix.bio}</h4>
@@ -50,30 +47,9 @@ const AboutMe = async ({ params }) => {
             <p>{dominatrix.url}</p>
           </Link>
         </div>
-      {/* )} */}
+      )}
     </main>
   );
 };
-
-// export async function getStaticProps({ params, preview = false }) {
-//   const dominatrix = await getClient.fetch(dominatrixQuery, { slug: params.slug });
-
-//   return {
-//     props: {
-//       data: {
-//         dominatrix,
-//       },
-//     },
-//   };
-// }
-
-// export async function getStaticPaths() {
-//   const paths = await sanityClient.fetch(slugPathQuery);
-
-//   return {
-//     paths: paths.map((slug) => ({ params: { slug } })),
-//     fallback: true,
-//   };
-// }
 
 export default AboutMe;
